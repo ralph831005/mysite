@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Upload</title>
+</head>
+<body>
+    <h1>Upload or Capture Photo</h1>
+    {{ upload_message }}
+
+    <!-- File Upload Form -->
+    <form id="photoForm" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="fileInput">Select Photo:</label>
+        <input type="file" id="fileInput" name="photo" accept="image/*" capture="camera" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <hr>
+
+    <!-- Camera Capture -->
+    <h2>Or Use Your Camera</h2>
+    <video id="video" width="320" height="240" autoplay></video>
+    <button id="captureBtn">Capture</button>
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+    <form id="captureForm" method="POST" enctype="multipart/form-data" style="display: none;">
+        {% csrf_token %}
+        <input type="hidden" id="imageData" name="photo">
+        <button type="submit">Submit Captured Photo</button>
+    </form>
+
+    <script>
+        // Camera functionality
+        const video = document.getElementById("video");
+        const canvas = document.getElementById("canvas");
+        const captureBtn = document.getElementById("captureBtn");
+        const captureForm = document.getElementById("captureForm");
+        const imageDataInput = document.getElementById("imageData");
+
+        // Access user's camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("Error accessing camera:", err);
+            });
+
+        // Capture image from video
+        captureBtn.addEventListener("click", () => {
+            const context = canvas.getContext("2d");
+            canvas.style.display = "block";
+            captureForm.style.display = "block";
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL("image/png");
+            imageDataInput.value = imageData; // Set image data as input value
+        });
+    </script>
+</body>
+</html>
+
