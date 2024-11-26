@@ -3,60 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Upload</title>
+    <title>Beautiful File Upload</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Upload or Capture Photo</h1>
-    {{ upload_message }}
+    <div class="upload-container">
+        <h1>Upload Your Photo</h1>
+        <form id="fileUploadForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Drag and Drop Zone -->
+            <div id="dropZone" class="drag-area">
+                <div class="drag-text">
+                    <p>Drag & Drop your photo here</p>
+                    <p>or</p>
+                    <label class="upload-button">
+                        <input type="file" id="fileInput" name="photo" accept="image/*" hidden>
+                        <span>Browse File</span>
+                    </label>
+                </div>
+            </div>
 
-    <!-- File Upload Form -->
-    <form id="photoForm" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="fileInput">Select Photo:</label>
-        <input type="file" id="fileInput" name="photo" accept="image/*" capture="camera" required>
-        <button type="submit">Upload</button>
-    </form>
+            <!-- Image Preview -->
+            <div id="previewContainer" class="preview-container" style="display: none;">
+                <h3>Image Preview:</h3>
+                <img id="imagePreview" src="" alt="Uploaded Image Preview">
+            </div>
 
-    <hr>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Upload</button>
+        </form>
+    </div>
 
-    <!-- Camera Capture -->
-    <h2>Or Use Your Camera</h2>
-    <video id="video" width="320" height="240" autoplay></video>
-    <button id="captureBtn">Capture</button>
-    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
-    <form id="captureForm" method="POST" enctype="multipart/form-data" style="display: none;">
-        {% csrf_token %}
-        <input type="hidden" id="imageData" name="photo">
-        <button type="submit">Submit Captured Photo</button>
-    </form>
-
-    <script>
-        // Camera functionality
-        const video = document.getElementById("video");
-        const canvas = document.getElementById("canvas");
-        const captureBtn = document.getElementById("captureBtn");
-        const captureForm = document.getElementById("captureForm");
-        const imageDataInput = document.getElementById("imageData");
-
-        // Access user's camera
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => {
-                video.srcObject = stream;
-            })
-            .catch(err => {
-                console.error("Error accessing camera:", err);
-            });
-
-        // Capture image from video
-        captureBtn.addEventListener("click", () => {
-            const context = canvas.getContext("2d");
-            canvas.style.display = "block";
-            captureForm.style.display = "block";
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = canvas.toDataURL("image/png");
-            imageDataInput.value = imageData; // Set image data as input value
-        });
-    </script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
 
