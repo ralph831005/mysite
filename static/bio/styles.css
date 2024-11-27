@@ -1,0 +1,87 @@
+/* General Reset */
+body, h1, h2, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.bio-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.profile-section {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #444;
+}
+
+.tagline {
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.social-links a {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #0056b3;
+}
+
+.about-section, .story-section {
+    padding: 20px;
+}
+
+.about-section h2, .story-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.about-section p, .story-section p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+

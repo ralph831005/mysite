@@ -3,38 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautiful File Upload</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Biography</title>
+    <link rel="stylesheet" href="/static/bio/styles.css">
 </head>
 <body>
-    <div class="upload-container">
-        <h1>Upload Your Photo</h1>
-        <form id="fileUploadForm" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <!-- Drag and Drop Zone -->
-            <div id="dropZone" class="drag-area">
-                <div class="drag-text">
-                    <p>Drag & Drop your photo here</p>
-                    <p>or</p>
-                    <label class="upload-button">
-                        <input type="file" id="fileInput" name="photo" accept="image/*" hidden>
-                        <span>Browse File</span>
-                    </label>
-                </div>
+    <div class="bio-container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <img class="profile-pic" src="/static/bio/profile.jpg" alt="Profile Picture">
+            <h1 class="name">Yen-Ting Lee</h1>
+            <p class="tagline">Software Developer | Tech Enthusiast | Researcher</p>
+            <div class="social-links">
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://www.linkedin.com/in/yen-ting-lee-7668b0293/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/ralph831005" target="_blank">GitHub</a>
             </div>
+        </div>
 
-            <!-- Image Preview -->
-            <div id="previewContainer" class="preview-container" style="display: none;">
-                <h3>Image Preview:</h3>
-                <img id="imagePreview" src="" alt="Uploaded Image Preview">
-            </div>
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>About Me</h2>
+            <p>
+				Hi, I'm Yen-Ting!
+            </p>
+        </div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="submit-button">Upload</button>
-        </form>
+        <!-- Personal Story Section -->
+        <div class="story-section">
+            <h2>My Story</h2>
+            <p>
+				To be told.
+            </p>
+        </div>
     </div>
-
-    <script src="/static/script.js"></script>
 </body>
 </html>
 

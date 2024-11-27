@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Scanner</title>
+    <link rel="stylesheet" href="/static/scanner/styles.css">
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload Your Photo</h1>
+        <form id="fileUploadForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Drag and Drop Zone -->
+            <div id="dropZone" class="drag-area">
+                <div class="drag-text">
+                    <p>Drag & Drop your photo here</p>
+                    <p>or</p>
+                    <label class="upload-button">
+                        <input type="file" id="fileInput" name="photo" accept="image/*" hidden>
+                        <span>Browse File</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Image Preview -->
+            <div id="previewContainer" class="preview-container" style="display: none;">
+                <h3>Image Preview:</h3>
+                <img id="imagePreview" src="" alt="Uploaded Image Preview">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Upload</button>
+        </form>
+    </div>
+
+    <script src="/static/scanner/script.js"></script>
+</body>
+</html>
+

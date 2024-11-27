@@ -11,6 +11,10 @@ from .forms import UserForm
 from .models import Photo, Receipt, Item
 
 
+def index(request):
+    return render(request, 'scanner/index.html')
+
+
 def login_view(request):
     if request.method == "POST":
         userform = UserForm(request.POST)
@@ -28,7 +32,7 @@ def login_view(request):
 
 
 @login_required(login_url='/login')
-def index(request):
+def scanner(request):
     upload_message = ''
 
     if request.method == "POST":
@@ -60,6 +64,6 @@ def index(request):
 
     return render(
         request,
-        'scanner/index.html',
+        'scanner/scanner.html',
         {'upload_message': upload_message}
     )
