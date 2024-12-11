@@ -32,7 +32,46 @@
             <!-- Submit Button -->
             <button type="submit" class="submit-button">Upload</button>
         </form>
+        {% if photo_url and receipt %}
+        <!-- <div class="render-container"> -->
+            <!-- Photo Section -->
+            <div class="preview-container">
+                <h2>Uploaded Photo</h2>
+                <img src="{{ photo_url }}" alt="Uploaded Photo">
+            </div>
+
+            <!-- Receipt Section -->
+            <div class="receipt-section">
+                <h2>{{ receipt.store }}</h2>
+                <h3>{{ receipt.purchase_date }}</h3>
+                <h3>{{ receipt.total_price }}</h3>
+                <div class="receipt-details">
+                    <p><strong>Tax Rate:</strong> {{ receipt.tax_rate }}%</p>
+                    <p><strong>Tax:</strong> ${{ receipt.tax }}</p>
+                </div>
+
+                <!-- Item Table -->
+                <table class="item-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in receipt.items %}
+                        <tr>
+                            <td>{{ item.item }}</td>
+                            <td>{{ item.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        <!-- </div> -->
+        {% endif %}
     </div>
+	<!-- Show Results Only After Upload -->
 
     <script src="/static/scanner/script.js"></script>
 </body>

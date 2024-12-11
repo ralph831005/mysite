@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 
 
@@ -8,9 +9,10 @@ class Receipt(models.Model):
     tax = models.FloatField(default=0)
     tax_rate = models.FloatField(default=0)
     photo_id = models.IntegerField(default=0)
+    purchase_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.store
+        return self.store + '_' + str(purchase_date)
 
 
 class Item(models.Model):

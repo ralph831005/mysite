@@ -24,16 +24,15 @@ def login_view(request):
             user = authenticate(request, username=data['username'], password=data['password'])
             if user is not None:
                 login(request, user)
-                return redirect('/')  # Replace with your desired redirect
+                return redirect(request.GET.get('next', '/'))  # Replace with your desired redirect
         messages.error(request, "Invalid username or password.")
     else:
         userform = UserForm()
     return render(request, 'scanner/login.html', {'form': userform})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/scanner/login')
 def scanner(request):
-    upload_message = ''
 
     if request.method == "POST":
         # Check if this is a base64-encoded image (camera capture)
@@ -52,18 +51,33 @@ def scanner(request):
 
         p = Proxy('PYRONAME:mysite.receipt_recognizer')
         receipt_detail = p.parse(photo_instance.image.path)
+        # receipt_detail = mock(photo_instance.image.path)
 
-        receipt_attr = ['store', 'total_price', 'tax', 'tax_rate']
+        receipt_attr = ['store', 'total_price', 'tax', 'tax_rate', 'purchase_date']
         receipt_instance = Receipt.objects.create(
             **{name: value for name, value in receipt_detail.items()
                if name in receipt_attr and value is not None})
 
         for item in receipt_detail['items']:
             Item.objects.create(receipt_id=receipt_instance.id, **item)
-        upload_message = "Successfully updated"
 
-    return render(
-        request,
-        'scanner/scanner.html',
-        {'upload_message': upload_message}
-    )
+        return render(
+            request,
+            'scanner/scanner.html',
+            {
+                'photo_url': photo_instance.image.url,
+                'receipt': receipt_detail,
+            },
+        )
+    return render(request, 'scanner/scanner.html')
+
+
+def mock(path):
+    return {
+        'store': 'Test',
+        'total_price': 100.00,
+        'tax': 10,
+        'tax_rate': 11.1,
+        'purchase_date': '2024-10-11',
+        'items': [{'item': 'Apple', 'price': 10}, {'item': 'Orange', 'price': 90}],
+    }

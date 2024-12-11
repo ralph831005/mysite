@@ -94,3 +94,74 @@ h1 {
     background: #218838;
 }
 
+.render-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+
+.photo-section, .receipt-section {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.photo-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.receipt-details {
+    margin-top: 10px;
+}
+
+.receipt-details p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.item-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.item-table th, .item-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.item-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.item-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.total {
+    font-weight: bold;
+    text-align: right;
+    padding-top: 20px;
+}
+
+.footer {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+}
