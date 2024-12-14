@@ -19,11 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y(4-&*345(^!*c78hb%*^eze_u(14em_mz1@ssoyuu99#9^%y5'
+# SECURITY ARNING: keep the secret key used in production secret!
+SECRET_KEY = 'uWh2SRIexFh2M4dlau/brJ2ukAErIHYXhvT7IQIvX8ChLSgG3c0TcyUTJ54sl4QDDMSbD5+zuTL4Y3bfVWD8GZkjry2ru20LtLDx9SgBRpJPJB2qdoYcVCGmoVMOCC3LHifr6g=='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'receipt_recognizer.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'scanner/templates', BASE_DIR / 'portfolio/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,7 +118,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "scanner/static",
+    BASE_DIR / "portfolio/static",
 ]
 
 # Default primary key field type
