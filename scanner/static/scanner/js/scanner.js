@@ -37,6 +37,10 @@ fileInput.addEventListener("change", (event) => {
 // Handle File Upload
 function handleFile(file) {
     if (file.type.startsWith("image/")) {
+        const uploaded_img = document.getElementById("uploaded-img");
+        if (uploaded_img) { uploaded_img.remove(); }
+        const uploaded_result = document.getElementById("uploaded-result");
+        if (uploaded_result) { uploaded_result.remove(); }
         const reader = new FileReader();
         reader.onload = (e) => {
             imagePreview.src = e.target.result;

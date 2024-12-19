@@ -1,0 +1,98 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: #1e1e1e;
+	padding: 0 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#my-scanner-header  {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+}
+
+#my-scanner-header .logo {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #4caf50;
+	text-decoration: none;
+}
+
+#my-scanner-header nav {
+	display: flex;
+	align-items: center;
+}
+
+#my-scanner-header nav ul {
+	list-style: none;
+	display: flex;
+	gap: 20px;
+}
+
+#my-scanner-header nav ul li a {
+	text-decoration: none;
+	font-size: 1em;
+	color: #ffffff;
+	padding: 5px 10px;
+	border-radius: 5px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+#my-scanner-header nav ul li a:hover {
+	background-color: #4caf50;
+	color: #121212;
+}
+
+#my-scanner-header .menu-toggle {
+	display: none;
+	flex-direction: column;
+	cursor: pointer;
+}
+
+#my-scanner-header .menu-toggle span {
+	width: 25px;
+	height: 3px;
+	background-color: #ffffff;
+	margin: 4px 0;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+	nav ul {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 60px;
+		right: 20px;
+		background: #1e1e1e;
+		width: 200px;
+		padding: 10px 0;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+		border-radius: 10px;
+	}
+
+	nav ul.active {
+		display: flex;
+	}
+
+	nav ul li a {
+		padding: 10px 20px;
+	}
+
+	.menu-toggle {
+		display: flex;
+	}
+}

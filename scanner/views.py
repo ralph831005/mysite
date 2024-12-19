@@ -57,6 +57,7 @@ def scanner(request):
 
         receipt_attr = ['store', 'total_price', 'tax', 'tax_rate', 'purchase_date']
         receipt_instance = Receipt.objects.create(
+            photo_id=photo_instance.id,
             **{name: value for name, value in receipt_detail.items()
                if name in receipt_attr and value is not None})
 
@@ -65,13 +66,18 @@ def scanner(request):
 
         return render(
             request,
-            'scanner/scanner.html',
+            'scanner/result.html',
             {
                 'photo_url': photo_instance.image.url,
                 'receipt': receipt_detail,
             },
         )
     return render(request, 'scanner/scanner.html')
+
+
+@login_required(login_url='/scanner/login')
+def display(request):
+    pass    
 
 
 def mock(path):
