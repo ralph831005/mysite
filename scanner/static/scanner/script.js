@@ -20,6 +20,7 @@ dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("drag-hover");
     const file = event.dataTransfer.files[0];
+    fileInput.files = event.dataTransfer.files;
     if (file) {
         handleFile(file);
     }
