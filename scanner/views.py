@@ -36,8 +36,6 @@ def scanner(request):
 
     if request.method == "POST":
         # Check if this is a base64-encoded image (camera capture)
-        print(request.POST)
-        print(request.FILES)
         if 'photo' in request.POST:
             image_data = request.POST['photo']
             format_, imgstr = image_data.split(';base64,')
